@@ -32,6 +32,14 @@ int lastOccur(int *a,int n,int key){
     return ind+1;
     
 }
+int AllOccur(int *a,int n,int key,int out[],int i,int j){
+    if (i>=n) return j;
+    if (a[i]==key){
+        out[j]=i;
+        return AllOccur(a,n,key,out,i+1,j+1);
+    }
+    return AllOccur(a,n,key,out,i+1,j);
+}
 
 int main()
 {
@@ -41,6 +49,9 @@ int main()
     int key=5;
     cout<<searchof(arr,n,key);
     cout<<lastOccur(arr,n,key);
-
-    return 0;
+    int out[100]={0};
+    int size=AllOccur(arr,n,key,out,0,0);
+    for (int k=0;k<size;k++){
+        cout<<out[k]<<" ";
+    }
 }
